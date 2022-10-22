@@ -17,11 +17,11 @@ class ProductAPIController extends Controller
     public function index(Request $request, ProductService $productService)
         {
 
-            // dd($request->input());
+            //GET PRODUCTS
             $products = $productService->getProducts($request->input());
 
+            
             return $products; 
-            // return ( $this->productService->all() );
 
         }
 }

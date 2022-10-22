@@ -17,8 +17,10 @@ class ProductService
     public function getProducts($request)
     {
 
+        //GET DATA
         $products = $this->productRepository->all($request);
 
+        //CHECK ALL DISCOUNTS
         $productsWithDiscounts = $this->checkDiscounts($products);
 
         return $productsWithDiscounts;
@@ -27,9 +29,9 @@ class ProductService
 
     public function checkDiscounts($products){
 
-        
         foreach($products as $product){
             
+            //LIST OF AVAILABLE DISCOUNTS
             $product = $this->productDiscounts->checkCategoryDiscount($product);
             
             $product = $this->productDiscounts->checkSKUDiscount($product);
