@@ -25,6 +25,20 @@ class ProductRepository
 
         
 
+        //FILTER DATA IF SEARCH IS APPLIED
+        if (!is_null($request)) {
+
+            foreach($request as $key => $value) {
+
+                //CHECK IF REQUEST MATCH SEARCHABLE FIELDS
+                if (in_array($key, Product::getFieldsSearchable())) {
+
+                    $products = $products->where($key, $value);
+
+                }
+
+            }
+
         foreach($products as $product) {
             
             //ADD PRICE FIELDS
@@ -38,28 +52,6 @@ class ProductRepository
             // CREATE COLLLECTION OF PRODUCTS
             $productsList->push(new Product($product));
         }
-
-
-        //FILTER RESULT IF SEARCH IS APPLIED
-        if (!is_null($request)) {
-
-            foreach($request as $key => $value) {
-
-                //CHECK IF REQUEST MATCH SEARCHABLE FIELDS
-                if (in_array($key, Product::getFieldsSearchable())) {
-
-                    //IF PRICE, CHECK ORIGINAL PRICE FIELD
-                    if ($key == 'price') {
-
-                        $key = 'price.original';
-
-                    }
-
-                        $productsList = $productsList->where($key, $value);
-
-                }
-
-            }
 
         }
 

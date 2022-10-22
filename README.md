@@ -1,3 +1,25 @@
+# CODE DOCUMENTATION
+
+# ROUTE and CONTROLLER
+The request of GET /products is handled by the index method in ProductAPIController, that is only responsible for handlig the HTTP request
+
+# Service Class
+ I created a Service class to handle the logic behind the request, in this case to fetch the data, and check for discounts.
+
+# Repository and Model
+I've putted the dataset in a colletion becasue it would be quicker for me than putting in a DB and I think you are not trying to evaulate the connection to database.
+First, if the user have filters we will do a query to only fetch those results, so we don't load all the data if we don't need.
+Then I add the extra price fields and create a collection with all the Products Model (in theroy the repository should only handle DB queries and not create the object here, but since I have not created a database I did it here)
+
+# Discounts
+In the Product Service Class, after fetching the data I check for all discounts that may be applied to the products.
+
+For the Discounts I created a seperated Class where we have a method with the list of all discounts that might be applied.
+
+The business logic behind those discounts are then in the their own methods so we can create the methods for all the discounts we might need.
+
+all the result are then return in json by the controller.
+
 # api-requirements
 
 ## Description

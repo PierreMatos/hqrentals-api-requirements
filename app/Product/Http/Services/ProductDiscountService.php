@@ -6,6 +6,21 @@ class ProductDiscountService
 {
     //CLASS TO ADD ALL DISCOUNTS AND RULES
 
+    public function checkDiscounts($products){
+
+        foreach($products as $product){
+            
+            //LIST OF AVAILABLE DISCOUNTS
+            $product = $this->checkCategoryDiscount($product);
+            
+            $product = $this->checkSKUDiscount($product);
+
+        }
+
+        return $products;
+
+    }
+
     //DISCOUNTS BY CATEGORY
     public function checkCategoryDiscount($product){
 
