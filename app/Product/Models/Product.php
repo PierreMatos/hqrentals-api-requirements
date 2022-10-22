@@ -3,19 +3,18 @@
 namespace App\Product\Models;
 
 use Eloquent as Model;
+use     \Price;
 
 class Product extends Model
 {
-
-    public $table = 'benefits';
-
-    protected $dates = ['deleted_at'];
 
     public $fillable = [
         'sku',
         'name',
         'category',
-        'price'
+        'price',
+        'original',
+        'final'
     ];
 
     /**
@@ -27,7 +26,10 @@ class Product extends Model
         'sku' => 'string',
         'name' => 'string',
         'category' => 'string',
-        'price' => 'integer'
+        'price' => 'array',
+        'price.original' => 'integer',
+        'final' => 'integer'
+
     ];
 
     /**
